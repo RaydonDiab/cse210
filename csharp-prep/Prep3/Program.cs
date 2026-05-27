@@ -8,31 +8,54 @@ class Program
         //Console.WriteLine("What is the magic number? ");
         //int magicNumber = int.Parse(Console.ReadLine());
 
-        Random randomGenerator = new Random();
-        int magicNumber = randomGenerator.Next(1,11);
+        string play = "y";
 
-        int guess = -2;
-
-        while (guess != magicNumber)
+    while (play == "y")
         {
-            Console.WriteLine("What is your guess? ");
-            guess = int.Parse(Console.ReadLine());
+            Random randomGenerator = new Random();
+            int magicNumber = randomGenerator.Next(1,11);
 
-            if (guess > magicNumber)
+            int guess = -2;
+            int guessAmount = 1;
+        
+            while (guess != magicNumber)
             {
-                Console.WriteLine("Lower");
+                Console.WriteLine("What is your guess? ");
+                guess = int.Parse(Console.ReadLine());
+                
+
+                if (guess > magicNumber)
+                {
+                    Console.WriteLine("Lower");
+                    guessAmount = guessAmount +1;
+                }
+
+                else if (guess < magicNumber)
+                {
+                    Console.WriteLine("Higher");
+                    guessAmount = guessAmount +1;
+                }
+
+                else
+                {
+                    Console.WriteLine("You got it right!");
+                    Console.WriteLine($"You got it in {guessAmount} guesses!");
+                }
             }
 
-            else if (guess < magicNumber)
+            Console.WriteLine("Do you want to play again?: (y/n)");
+            play = Console.ReadLine().ToLower().Trim();
+
+            while (play != "y" && play != "n")
             {
-                Console.WriteLine("Higher");
+                Console.WriteLine("Please enter y or n: ");
+                play = Console.ReadLine().ToLower().Trim();
             }
 
-            else
+            if (play != "y")
             {
-                Console.WriteLine("You guessed it");
+                Console.WriteLine("Thanks for playing");
             }
         }
-
     }
 }
